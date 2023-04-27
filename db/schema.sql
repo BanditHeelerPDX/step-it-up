@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS `superBlog_db`;
+CREATE DATABASE `superBlog_db`;
