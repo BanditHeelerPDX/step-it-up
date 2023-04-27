@@ -1,6 +1,6 @@
 const loginForm = `
 <h2>Step it up, bro!</h2>
-<form action="" class="form login-form">
+<form id="login-form" class="form login-form">
     <div class="form-group">
         <label for="email-login">Electronic Mailing Address:</label>
         <input type="text" id="email-login" class="form-input">
@@ -13,4 +13,7 @@ const loginForm = `
         <button class="btn btn-primary" type="submit">Authenticate</button>
     </div>
 </form>
+<script src="/js/login.js"></script>
 `;
+
+document.querySelector('#login-form').innerHTML = loginForm;
