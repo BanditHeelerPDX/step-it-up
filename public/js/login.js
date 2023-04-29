@@ -13,7 +13,7 @@ const loginFormHandler = async (event) => {
             });
 
             if (response.ok) {
-                document.location.replace('/');
+                document.location.replace('/views/layouts/dashboard.handlebars');
             } else {
                 alert('Unable to log you in at this time. Please verify your email and password and try again.');
             }
