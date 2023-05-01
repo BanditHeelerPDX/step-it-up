@@ -13,9 +13,9 @@ const sequelize = new Sequelize(
 );
 
 sequelize.authenticate().then(() => {
-    console.log('Connection has been established successfully.');
+    console.log('Steppin\' in the right direction.');
 }).catch((err) => {
-    console.error('Unable to connect to the database:', err);
+    console.error('Steppin\' in the wrong direction:', err);
 });
 
 module.exports = sequelize;
