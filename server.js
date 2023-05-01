@@ -3,7 +3,7 @@ const session = require('express-session');
 const sequelize = require('./config/connection');
 const sequelizeStore = require('connect-session-sequelize')(session.Store);
 const PORT = process.env.PORT || 3030;
-const routes = require('./controllers');
+const routes = require('./controllers/index');
 
 const sess = {
     secret: 'Super secret secret',
