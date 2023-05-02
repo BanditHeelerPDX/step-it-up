@@ -7,11 +7,11 @@ router.post('/register', async (req, res) => {
   try {
     const existingUser = await User.findOne({
       where: {
-        [Op.or]: [{ email: req.body.email }, { userName: req.body.userName }],
+       email: req.body.email,
       },
     });
     if (existingUser) {
-      return res.status(400).json({ message: 'Email or username already taken' });
+      return res.status(409).json({ message: 'The email you are attempting to register with already exists in our system.  Check your spelling or try another.' });
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 16);
@@ -32,11 +32,11 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
-        [Op.or]: [{ email: req.body.email }, { userName: req.body.userName }],
+        userName: req.body.userName,
       },
     });
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or username' });
+      return res.status(409).json({ message: 'The email you are attempting to login with does not exist in our system, please register or check your spelling.' });
     }
 
     const passwordMatch = await bcrypt.compare(req.body.password, user.password);

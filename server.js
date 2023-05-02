@@ -21,13 +21,12 @@ app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.engine("handlebars", exphbs.engine({
-    defaultLayout: "main",
-    layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials'
-}));
+const hbs = exphbs.create({
+  defaultLayout: "main",
+});
+
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
-app.set('views', __dirname + '/views');
 
 app.get("/", (req, res) => {
   res.render("homepage");
