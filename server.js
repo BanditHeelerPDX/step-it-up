@@ -29,7 +29,7 @@ app.engine("handlebars", exphbs.engine({
 app.set("view engine", "handlebars");
 app.set('views', __dirname + '/views');
 
-app.get("/homepage", (req, res) => {
+app.get("/", (req, res) => {
   res.render("homepage");
 });
 
