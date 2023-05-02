@@ -1,0 +1,17 @@
+<h2>Homepage is where the heart is
+     still beating in a jar on my desk.</h2>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+    </ul>
+</nav>
+<h3>The Church of Latter-Day Blog Posts</h3>
+{{#each posts}}
+    <div class="post">
+        <h4>{{title}}</h4>
+        <p>{{body}}</p>
+    </div>
+{{/each}}
