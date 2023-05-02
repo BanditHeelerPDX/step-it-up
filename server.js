@@ -1,18 +1,18 @@
-const express = require('express');
-const session = require('express-session');
-const sequelize = require('./config/connection');
-const sequelizeStore = require('connect-session-sequelize')(session.Store);
+const express = require("express");
+const session = require("express-session");
+const exphbs = require("express-handlebars");
+const sequelize = require("./config/connection");
+const sequelizeStore = require("connect-session-sequelize")(session.Store);
 const PORT = process.env.PORT || 3030;
-const authorized = require('./utils/auth');
 
 const sess = {
-    secret: 'Super secret secret',
-    cookie: {},
-    resave: false,
-    saveUninitialized: true,
-    store: new sequelizeStore({
-        db: sequelize
-})
+  secret: "Super secret secret",
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new sequelizeStore({
+    db: sequelize,
+  }),
 };
 
 const app = express();
@@ -21,17 +21,22 @@ app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const router = express.Router();
-const userRoutes = require('./controllers/userRoutes');
-const homeRoutes = require('./controllers/homeRoutes');
-const dashboardRoutes = require('./controllers/dashboardRoutes');
+app.engine("handlebars", exphbs.engine({
+    defaultLayout: "main",
+    layoutsDir: __dirname + '/views/layouts',
+    partialsDir: __dirname + '/views/partials'
+}));
+app.set("view engine", "handlebars");
+app.set('views', __dirname + '/views');
 
-router.use('/users', userRoutes);
-router.use('/', homeRoutes);
-router.use('/dashboard', dashboardRoutes);
-
-app.use(router);
+app.get("/homepage", (req, res) => {
+  res.render("homepage");
+});
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log(`Welcome back, all you hepcats out there! You're listening to the smooth, sultry sounds of ${PORT}, the PORT!`));
+  app.listen(PORT, () =>
+    console.log(
+      `Welcome back, all you hepcats out there! You're listening to the smooth, sultry sounds of ${PORT}, the PORT!`
+    )
+  );
 });
