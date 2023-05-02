@@ -1,8 +1,8 @@
 const authorized = require('../utils/auth');
 
 const linkBack = document.querySelector('#link-back');
-if (authorized) {
+authorized(req, res, () => {
     linkBack.href = '/dashboard';
-} else {
+  }, () => {
     linkBack.href = '/';
-}
+  });
