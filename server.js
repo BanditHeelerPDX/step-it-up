@@ -29,7 +29,7 @@ app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => {
-  res.render("homepage", homepage);
+  res.render("homepage");
 });
 
 sequelize.sync({ force: false }).then(() => {
