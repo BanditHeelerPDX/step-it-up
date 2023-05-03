@@ -22,10 +22,18 @@ Post.init(
             },
             author: {
                 type: DataTypes.STRING,
-                allowNull: false
-            },
-            date_created: {
-                type: DataTypes.DATE,
                 allowNull: false,
-                defaultValue: DataTypes.NOW
+                referencedColumn: 'userName',
+                referencedTable: 'User'
             },
+        },
+        {
+            sequelize,
+            timestamps: true,
+            freezeTableName: true,
+            underscored: true,
+            modelName: "post",
+        }
+    );
+
+module.exports = Post;
