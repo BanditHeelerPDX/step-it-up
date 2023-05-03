@@ -6,9 +6,9 @@
       <a href="/">Home</a>
       {{% endif %}}
     </li> --}}
-    <li><a href="/dashboard">Dashboard</a></li>
-    <li><a href="/login">Login</a></li>
-    <li><a href="/register">Register</a></li>
+    <li><a id="dashLink" href="/dashboard">Dashboard</a></li>
+    <li><a id="logLink" href="/login">Login</a></li>
+    <li><a id="regLink" href="/register">Register</a></li>
   </ul>
 </nav>
 <h3>The Church of Latter-Day Blog Posts</h3>
@@ -18,3 +18,4 @@
     <p>{{body}}</p>
   </div>
 {{/each}}
+<script src="/js/homepage.js"></script>
